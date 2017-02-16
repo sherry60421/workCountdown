@@ -1,0 +1,21 @@
+{
+  "name": "work-countdown",
+  "description": "csc work countdown!",
+  "main": "index.js",
+  "authors": [
+    "phoebeyou"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/sherry60421/workCountdown",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "flipclock": "FlipClock#^0.7.7"
+  }
+}
