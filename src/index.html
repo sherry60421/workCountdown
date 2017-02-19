@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <title>WORK COUNTDOWN</title>
+    <link rel="stylesheet" type="text/css" href="./dist/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./dist/bower_components/flipclock/compiled/flipclock.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/_variables.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/_bootswatch.css">
+    <link rel="stylesheet" type="text/css" href="./dist/css/main.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div id="content">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div id="before-message" class="col-md-8">
+                  你今天幾點上班？
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div id="button-start" class="col-md-8 col-xs-10">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-lg btn-default" value="07:30">07:30</button>
+                        <button type="button" class="btn btn-lg btn-default" value="08:00">08:00</button>
+                        <button type="button" class="btn btn-lg btn-default" value="08:30">08:30</button>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div id="after-message" class="col-md-8 col-xs-10"></div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+              <div id="clock-content" class="col-md-12">
+                <div id="countdown-clock"></div>
+              </div>
+            </div>
+        </div>
+        <script src="../dist/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../dist/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../dist/bower_components/flipclock/compiled/flipclock.min.js"></script>
+        <script type="text/javascript" src="../dist/js/bundle.js"></script>
+</body>
+
+</html>

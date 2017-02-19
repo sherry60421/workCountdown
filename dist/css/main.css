@@ -1,2 +1,23 @@
-h1 {
-  color: red; }
+#content {
+  padding-top: 10%; }
+
+#button-start {
+  text-align: center; }
+
+#before-message, #after-message {
+  text-align: center;
+  padding: 15px;
+  font-size: 20pt; }
+
+#after-message {
+  display: none; }
+
+#clock-content {
+  display: none;
+  text-align: center;
+  padding: 30px; }
+
+#countdown-clock {
+  display: none;
+  width: 460px;
+  margin: 0px auto; }

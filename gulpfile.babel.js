@@ -14,8 +14,8 @@ import image from 'gulp-image';
 
 
 const dirs = {
-  src: 'src',
-  dest: 'dist'
+  src: './src',
+  dest: './dist'
 };
 
 const stylesPaths = {
@@ -24,7 +24,7 @@ const stylesPaths = {
 };
 
 const scriptsPaths = {
-  src: `${dirs.src}/scripts/*.js`,
+  src: `${dirs.src}/javascripts/*.js`,
   dest: `${dirs.dest}/js`
 };
 
@@ -64,12 +64,19 @@ gulp.task('images', function() {
     .pipe(gulp.dest(imagesPaths.dest));
 });
 
+
+gulp.task('html', function () {
+  gulp.src('./src/*.html')
+    .pipe(connect.reload());
+});
+
 // 啟動測試用 server，root 為 index.html 放置位置
 gulp.task('server', function () {
   connect.server({
-    root: ['./'],
+    root: ['.'],
     livereload: true,
     port: 7777,
+    fallback: './src/index.html'
   });
 });
 
@@ -78,6 +85,7 @@ gulp.task('watch', function () {
   gulp.watch(stylesPaths.src, ['styles']);
   gulp.watch(scriptsPaths.src, ['javascripts']);
   gulp.watch(imagesPaths.src, ['images']);
+  gulp.watch('./src', ['html']);
 });
 
 // 兩種任務類型，第一種會啟動 server
