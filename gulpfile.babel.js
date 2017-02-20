@@ -18,6 +18,11 @@ const dirs = {
   dest: './dist'
 };
 
+const pagesPaths = {
+  src: `${dirs.src}/*.html`,
+  dest: `${dirs.dest}`
+};
+
 const stylesPaths = {
   src: `${dirs.src}/styles/*.scss`,
   dest: `${dirs.dest}/css`
@@ -66,7 +71,8 @@ gulp.task('images', function() {
 
 
 gulp.task('html', function () {
-  gulp.src('./src/*.html')
+  gulp.src(pagesPaths.src)
+    .pipe(gulp.dest(pagesPaths.dest))
     .pipe(connect.reload());
 });
 
@@ -76,7 +82,7 @@ gulp.task('server', function () {
     root: ['.'],
     livereload: true,
     port: 7777,
-    fallback: './src/index.html'
+    fallback: './dist/index.html'
   });
 });
 
@@ -85,7 +91,7 @@ gulp.task('watch', function () {
   gulp.watch(stylesPaths.src, ['styles']);
   gulp.watch(scriptsPaths.src, ['javascripts']);
   gulp.watch(imagesPaths.src, ['images']);
-  gulp.watch('./src', ['html']);
+  gulp.watch(pagesPaths.src, ['html']);
 });
 
 // 兩種任務類型，第一種會啟動 server
