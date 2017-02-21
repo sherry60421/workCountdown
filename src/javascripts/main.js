@@ -1,14 +1,16 @@
 
 $(function(){
+
   // 上班時間按鈕
-  $("#button-start").on('click', function(e){
+  $("#button-start button").on('click', function(e){
     var date = new Date();
     var now = new Date();
-    if(e.target.value === "07:30"){
+    var $clickedBtn = $(this);
+    if($clickedBtn.val() === "07:30"){
       date.setHours(16, 30, 0);
-    } else if(e.target.value === "08:00"){
+    } else if($clickedBtn.val() === "08:00"){
       date.setHours(17, 0, 0);
-    } else if(e.target.value === "08:30"){
+    } else if($clickedBtn.val() === "08:30"){
       date.setHours(17, 30, 0);
     } else{
       return;
@@ -26,7 +28,22 @@ $(function(){
     $("#after-message").show();
     $("#clock-content").show();
     $("#countdown-clock").show();
+    // toggle
+    $("#button-start button").each(function(index){
+      if($(this).val() === $clickedBtn.val()){
+        $(this).removeClass("btn-default").addClass(".active").addClass("btn-primary");
+      } else{
+        $(this).addClass("btn-default").removeClass(".active").removeClass("btn-primary");
+      }
+    });
+    //紀錄下來
+    localStorage.setItem('startTime', $clickedBtn.val());
   });
+
+  //上次的時間
+  if(localStorage.getItem('startTime')){
+    $("#button-start button[value='" + localStorage.getItem('startTime') + "']").click();
+  }
 
 
 

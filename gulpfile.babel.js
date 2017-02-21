@@ -79,10 +79,9 @@ gulp.task('html', function () {
 // 啟動測試用 server，root 為 index.html 放置位置
 gulp.task('server', function () {
   connect.server({
-    root: ['.'],
+    root: ['./dist'],
     livereload: true,
-    port: 7777,
-    fallback: './dist/index.html'
+    port: 7777
   });
 });
 
@@ -95,5 +94,5 @@ gulp.task('watch', function () {
 });
 
 // 兩種任務類型，第一種會啟動 server
-gulp.task('default', ['javascripts', 'styles', 'images', 'server', 'watch']);
-gulp.task('build', ['javascripts', 'styles', 'images']);
+gulp.task('default', ['javascripts', 'styles', 'images', 'html', 'server', 'watch']);
+gulp.task('build', ['javascripts', 'styles', 'images', 'html']);
