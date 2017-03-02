@@ -3,26 +3,20 @@
 	padding-top: 10%;
 }
 
-#button-start{
+.function-button{
 	text-align: center;
 }
-#before-message, #after-message{
+.message{
 	text-align: center;
-	padding: 15px;
+	padding: 20px;
 	font-size: 20pt;
 }
 
-#after-message{
+.none-display{
 	display: none;
 }
 
-#clock-content{
-	display: none;
-	text-align: center;
-	padding: 30px;
-}
-#countdown-clock{
-	display: none;
+.countdown-clock{
 	width: 460px;
 	margin: 0px auto;
 }

@@ -1,8 +1,8 @@
 
 $(function(){
-
+  // ---- 下班倒數計時器 ---- //
   // 上班時間按鈕
-  $("#button-start button").on('click', function(e){
+  $("#off-button-start button").on('click', function(e){
     var date = new Date();
     var now = new Date();
     var $clickedBtn = $(this);
@@ -17,19 +17,18 @@ $(function(){
     }
     var diff = (date.getTime()/1000) - (now.getTime()/1000);
     if(diff < 0){
-      $("#countdown-clock").FlipClock(-diff);
-      $("#after-message").text("你已經加班了");
+      $("#off-countdown").FlipClock(-diff);
+      $("#off-after-message").text("你已經加班了");
     } else{
-      $("#countdown-clock").FlipClock(diff, {
+      $("#coff-countdown").FlipClock(diff, {
         countdown: true
       });
-      $("#after-message").text("距離下班還剩下");
+      $("#off-after-message").text("距離下班還剩下");
     }
-    $("#after-message").show();
-    $("#clock-content").show();
-    $("#countdown-clock").show();
+    $("#off-after-message").show();
+    $("#off-countdown").show();
     // toggle
-    $("#button-start button").each(function(index){
+    $("#off-button-start button").each(function(index){
       if($(this).val() === $clickedBtn.val()){
         $(this).removeClass("btn-default").addClass(".active").addClass("btn-primary");
       } else{
@@ -42,9 +41,21 @@ $(function(){
 
   //上次的時間
   if(localStorage.getItem('startTime')){
-    $("#button-start button[value='" + localStorage.getItem('startTime') + "']").click();
+    $("#off-button-start button[value='" + localStorage.getItem('startTime') + "']").click();
   }
 
-
+  // ---- 午餐倒數計時器 ---- //
+  var now = new Date();
+  var date = new Date();
+  date.setHours(11, 30, 0);
+  var diff = (date.getTime()/1000) - (now.getTime()/1000);
+  if(diff < 0){
+    $("#lunch-countdown").FlipClock(-diff);
+    $("#lunch-message").text("你已經吃飽了");
+  } else{
+    $("#lunch-countdown").FlipClock(diff, {
+      countdown: true
+    });
+  }
 
 });

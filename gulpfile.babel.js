@@ -79,7 +79,7 @@ gulp.task('html', function () {
 // 啟動測試用 server，root 為 index.html 放置位置
 gulp.task('server', function () {
   connect.server({
-    root: ['./dist'],
+    root: 'dist',
     livereload: true,
     port: 7777
   });
