@@ -20,7 +20,7 @@ $(function(){
       $("#off-countdown").FlipClock(-diff);
       $("#off-after-message").text("你已經加班了");
     } else{
-      $("#coff-countdown").FlipClock(diff, {
+      $("#off-countdown").FlipClock(diff, {
         countdown: true
       });
       $("#off-after-message").text("距離下班還剩下");
