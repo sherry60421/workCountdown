@@ -13,32 +13,35 @@
     <div class="container-fluid">
         <div id="content">
             <div class="row">
-                <div class="col-md-2"></div>
-                <div id="before-message" class="col-md-8">
-                  你今天幾點上班？
+                <div class="col-md-2">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a data-toggle="pill" href="#offWork">下班倒數計時器</a></li>
+                        <li><a data-toggle="pill" href="#lunch">午餐倒數計時器</a></li>
+                    </ul>
                 </div>
-                <div class="col-md-2"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div id="button-start" class="col-md-8 col-xs-10">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-lg btn-default" value="07:30">07:30</button>
-                        <button type="button" class="btn btn-lg btn-default" value="08:00">08:00</button>
-                        <button type="button" class="btn btn-lg btn-default" value="08:30">08:30</button>
+                <div class="tab-content col-md-10">
+                    <div id="offWork" class="tab-pane fade in active">
+                        <div class="message">
+                            你今天幾點上班？
+                        </div>
+                        <div id="off-button-start" class="function-button">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-lg btn-default" value="07:30">07:30</button>
+                                <button type="button" class="btn btn-lg btn-default" value="08:00">08:00</button>
+                                <button type="button" class="btn btn-lg btn-default" value="08:30">08:30</button>
+                            </div>
+                        </div>
+                        <div id="off-after-message" class="message"></div>
+                        <div id="off-countdown" class="countdown-clock none-display"></div>
+                    </div>
+                    <div id="lunch" class="tab-pane fade">
+                      <div id="lunch-message" class="message">
+                        距離午餐時間還有
+                      </div>
+                      <div id="lunch-countdown" class="countdown-clock"></div>
                     </div>
                 </div>
                 <div class="col-md-2"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div id="after-message" class="col-md-8 col-xs-10"></div>
-                <div class="col-md-2"></div>
-            </div>
-            <div class="row">
-              <div id="clock-content" class="col-md-12">
-                <div id="countdown-clock"></div>
-              </div>
             </div>
         </div>
         <script src="./bower_components/jquery/dist/jquery.min.js"></script>
