@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "flipclock": "FlipClock#^0.7.7"
+    "flipclock": "FlipClock#^0.7.7",
+    "bootstrap-datepicker": "^1.9.0"
   }
 }

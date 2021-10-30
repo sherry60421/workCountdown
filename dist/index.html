@@ -6,17 +6,23 @@
     <title>WORK COUNTDOWN</title>
     <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="./bower_components/flipclock/compiled/flipclock.css">
+    <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
     <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="manifest" href="/manifest.json">
 </head>
 
 <body>
     <div class="container-fluid">
+        <div id="header">
+
+        </div>
         <div id="content">
             <div class="row">
                 <div class="col-md-2">
                     <ul class="nav nav-pills nav-stacked">
                         <li class="active"><a data-toggle="pill" href="#offWork">下班倒數計時器</a></li>
                         <li><a data-toggle="pill" href="#lunch">午餐倒數計時器</a></li>
+                        <li><a data-toggle="pill" href="#retirement">退休倒數計時器</a></li>
                     </ul>
                 </div>
                 <div class="tab-content col-md-10">
@@ -34,11 +40,23 @@
                         <div id="off-after-message" class="message"></div>
                         <div id="off-countdown" class="countdown-clock none-display"></div>
                     </div>
+                    <!-- -->
                     <div id="lunch" class="tab-pane fade">
-                      <div id="lunch-message" class="message">
-                        距離午餐時間還有
+                        <div id="lunch-message" class="message">
+                            距離午餐時間還有
+                        </div>
+                        <div id="lunch-countdown" class="countdown-clock"></div>
+                    </div>
+                    <!-- -->
+                    <div id="retirement" class="tab-pane fade">
+                      <div class="message">
+                          你的生日？
                       </div>
-                      <div id="lunch-countdown" class="countdown-clock"></div>
+                      <div class="function-button">
+                          <input id="birth-start" data-provide="datepicker" data-date-autoclose="true" data-date-format="yyyy/mm/dd">
+                      </div>
+                      <div id="retire-after-message" class="message"></div>
+                      <div id="retire-countdown" class="countdown-daily-clock none-display"></div>
                     </div>
                 </div>
                 <div class="col-md-2"></div>
@@ -47,7 +65,8 @@
         <script src="./bower_components/jquery/dist/jquery.min.js"></script>
         <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="./bower_components/flipclock/compiled/flipclock.min.js"></script>
-        <script type="text/javascript" src="./js/bundle.js"></script>
+        <script type="text/javascript" src="./bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script type="text/javascript" src="./js/bundle.js" charset="utf-8"></script>
 </body>
 
 </html>

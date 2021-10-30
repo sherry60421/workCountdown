@@ -1,6 +1,8 @@
+#header{
+	height: 100px;
+}
 
 #content{
-	padding-top: 10%;
 }
 
 .function-button{
@@ -19,4 +21,11 @@
 .countdown-clock{
 	width: 460px;
 	margin: 0px auto;
+}
+
+.countdown-daily-clock{
+	width: 850px;
+	margin: 0px auto;
+	zoom: 0.9;
+	-moz-transform: scale(0.9);
 }

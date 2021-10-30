@@ -23,13 +23,18 @@
     "babelify": "^7.3.0",
     "browserify": "^14.1.0",
     "gulp": "^3.9.1",
-    "gulp-connect": "^5.0.0",
+    "gulp-connect": "^5.7.0",
     "gulp-image": "^2.7.5",
+    "gulp-imagemin": "^3.1.1",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.4.1",
     "gulp-uglify": "^2.0.1",
     "gulp-util": "^3.0.8",
-    "vinyl-buffer": "^1.0.0",
+    "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "native": "^0.3.3",
+    "natives": "^1.1.6"
   }
 }
