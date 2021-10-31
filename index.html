@@ -3,18 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>WORK COUNTDOWN</title>
+    <title>Work Tools</title>
     <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="./bower_components/flipclock/compiled/flipclock.css">
     <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
     <link rel="stylesheet" type="text/css" href="./css/main.css">
-    <link rel="manifest" href="/manifest.json">
 </head>
 
 <body>
     <div class="container-fluid">
         <div id="header">
-
         </div>
         <div id="content">
             <div class="row">
@@ -23,9 +21,11 @@
                         <li class="active"><a data-toggle="pill" href="#offWork">下班倒數計時器</a></li>
                         <li><a data-toggle="pill" href="#lunch">午餐倒數計時器</a></li>
                         <li><a data-toggle="pill" href="#retirement">退休倒數計時器</a></li>
+                        <li><a data-toggle="pill" href="#alter-table">表格異動影響整理器</a></li>
                     </ul>
                 </div>
                 <div class="tab-content col-md-10">
+                    <!-- 下班倒數計時器 -->
                     <div id="offWork" class="tab-pane fade in active">
                         <div class="message">
                             你今天幾點上班？
@@ -40,26 +40,71 @@
                         <div id="off-after-message" class="message"></div>
                         <div id="off-countdown" class="countdown-clock none-display"></div>
                     </div>
-                    <!-- -->
+                    <!-- 午餐倒數計時器 -->
                     <div id="lunch" class="tab-pane fade">
                         <div id="lunch-message" class="message">
                             距離午餐時間還有
                         </div>
                         <div id="lunch-countdown" class="countdown-clock"></div>
                     </div>
-                    <!-- -->
+                    <!-- 退休倒數計時器 -->
                     <div id="retirement" class="tab-pane fade">
                       <div class="message">
                           你的生日？
                       </div>
                       <div class="function-button">
-                          <input id="birth-start" data-provide="datepicker" data-date-autoclose="true" data-date-format="yyyy/mm/dd">
+                          <input id="birth-start" class="form-control" style="width: auto; display: inline;" data-provide="datepicker" data-date-autoclose="true" data-date-format="yyyy/mm/dd">
                       </div>
                       <div id="retire-after-message" class="message"></div>
                       <div id="retire-countdown" class="countdown-daily-clock none-display"></div>
                     </div>
+                    <!-- 表格異動影響整理器 -->
+                    <div id="alter-table" class="tab-pane fade">
+                      <div class="message">
+                          <a href="#" target="_blank">使用教學(限公司內網)</a>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                          <ul class="nav nav-pills">
+                            <li role="presentation" class="active"><a data-toggle="pill" href="#CASE">CASE</a></li>
+                            <li role="presentation"><a data-toggle="pill" href="#Ezo">Ezo</a></li>
+                            <li role="presentation"><a data-toggle="pill" href="#SCM">SCM</a></li>
+                            <li role="presentation"><a data-toggle="pill" href="#ASP">ASP</a></li>
+                          </ul>
+                          <div class="tab-content">
+                            <div id="CASE" class="tab-pane fade in active panel panel-default">
+                              <div class="panel-body">
+                                <textarea id="case-src" class="form-control" wrap="off" rows="10"></textarea>
+                              </div>
+                            </div>
+                            <div id="Ezo" class="tab-pane fade panel panel-default">
+                              <div class="panel-body">
+                                <textarea id="ezo-src" class="form-control" wrap="off" rows="10"></textarea>
+                              </div>
+                            </div>
+                            <div id="SCM" class="tab-pane fade panel panel-default">
+                              <div class="panel-body">
+                                <textarea id="scm-src" class="form-control" wrap="off" rows="10"></textarea>
+                              </div>
+                            </div>
+                            <div id="ASP" class="tab-pane fade panel panel-default">
+                              <div class="panel-body">
+                                <textarea id="asp-src" class="form-control" wrap="off" rows="10"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" style="text-align: center; padding-bottom: 10px;">
+                        <button id="list" type="button" class="btn btn-lg btn-primary">整理！</button>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                          <textarea id="list-result" class="form-control" wrap="off" rows="10"></textarea>
+                        </div>
+                      </div>
+                    </div>
                 </div>
-                <div class="col-md-2"></div>
             </div>
         </div>
         <script src="./bower_components/jquery/dist/jquery.min.js"></script>
