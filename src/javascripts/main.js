@@ -70,7 +70,7 @@ $(function() {
           });
           $("#retire-after-message").text("你已經退休了");
         } else{
-          $("#retire-after-message").text("距離退休還剩下");
+          $("#retire-after-message").text("距離65歲退休還剩下");
           $("#retire-countdown").FlipClock(diffRetire, {
               clockFace: 'DailyCounter',
               countdown: true
@@ -91,54 +91,89 @@ $(function() {
       // CASE
       var caseText = $("#case-src").val();
       var caseLines = caseText.split("\n");
-      var caseSystemSet = new Set(caseLines.map(function(e){
+      var caseSystemList = [];
+      caseLines.forEach(function(e){
         var s = e.replace(/(\(\d+\)\s)/, '');
         s = s.replace(/(\[\s[\w\.]+\s\]\s位置：JAVA\\\w+\\)/, '');
         s = s.substring(0, s.indexOf('\\'));
         s = s.replace('case-', '');
-        if(s) return s;
-      }));
+        if(s) caseSystemList.push(s);
+      });
+      var caseSystemSet = new Set(caseSystemList);
       // Ezo
       var ezoText = $("#ezo-src").val();
       var ezoLines = ezoText.split("\n");
-      var ezoSystemSet = new Set(ezoLines.map(function(e){
+      var ezoSystemList = [];
+      ezoLines.forEach(function(e){
         var s = e.replace(/(\(\d+\)\s)/, '');
         s = s.replace(/(\[\s[\w\.]+\s\]\s位置：EZO\\)/, '');
         s = s.substring(0, s.indexOf('\\'));
-        if(s) return s;
-      }));
+        if(s) ezoSystemList.push(s);
+      });
+      var ezoSystemSet = new Set(ezoSystemList);
       // SCM
       var scmText = $("#scm-src").val();
       var scmLines = scmText.split("\n");
-      var scmSystemSet = new Set(scmLines.map(function(e){
+      var scmSystemList = [];
+      scmLines.forEach(function(e){
         var s = e.replace(/(\(\d+\)\s)/, '');
         s = s.replace(/(\[\s[\w\.]+\s\]\s位置：SCM\\)/, '');
         s = s.substring(0, s.indexOf('\\'));
-        if(s) return s;
-      }));
+        if(s) scmSystemList.push(s);
+      });
+      var scmSystemSet = new Set(scmSystemList);
       // ASP
       var aspText = $("#asp-src").val();
       var aspLines = aspText.split("\n");
-      var aspSystemSet = new Set(aspLines.map(function(e){
+      var aspSystemList = [];
+      aspLines.forEach(function(e){
         var s = e.replace(/(\(\d+\)\s)/, '');
         s = s.replace(/(\[\s[\w\.]+\s\]\s位置：ASPNET\\)/, '');
         s = s.substring(0, s.indexOf('\\'));
-        if(s) return s;
-      }));
+        if(s) aspSystemList.push(s);
+      });
+      var aspSystemSet = new Set(aspSystemList);
       // 整理
       var allSet = new Set([...caseSystemSet, ...ezoSystemSet, ...scmSystemSet, ...aspSystemSet]);
       if(allSet.size > 0){
-        var result = "\tCASE\tEzo\tSCM\tASP\n";
+        var result = (caseSystemSet.size > 0 ? "\tCASE" : "")
+        + (ezoSystemSet.size > 0 ? "\tEzo" : "")
+        + (scmSystemSet.size > 0 ? "\tSCM" : "")
+        + (aspSystemSet.size > 0 ? "\tASP" : "") + "\n";
         allSet.forEach(function(e){
-          var line = e + "\t";
-          line += caseSystemSet.size > 0 && caseSystemSet.has(e) ? "V\t" : "\t";
-          line += ezoSystemSet.size > 0 && ezoSystemSet.has(e) ? "V\t" : "\t";
-          line += scmSystemSet.size > 0 && scmSystemSet.has(e) ? "V\t" : "\t";
-          line += aspSystemSet.size > 0 && aspSystemSet.has(e) ? "V\t" : "\t";
-          line += "\n";
-          result += line;
+          if(e){
+            var line = e.toUpperCase() + "\t";
+            line += caseSystemSet.size > 0 && caseSystemSet.has(e) ? "V\t" : "\t";
+            line += ezoSystemSet.size > 0 && ezoSystemSet.has(e) ? "V\t" : "\t";
+            line += scmSystemSet.size > 0 && scmSystemSet.has(e) ? "V\t" : "\t";
+            line += aspSystemSet.size > 0 && aspSystemSet.has(e) ? "V\t" : "\t";
+            line += "\n";
+            result += line;
+          }
         });
         $("#list-result").val(result);
+      }
+    });
+    $("#copyToClipBoard").on("click", function(e){
+      var content = document.getElementById('list-result');
+      content.select();
+      document.execCommand('copy');
+      alert("複製完成！");
+    });
+    $("#clearAll").on("click", function(e){
+      $("#case-src").val("");
+      $("#ezo-src").val("");
+      $("#scm-src").val("");
+      $("#asp-src").val("");
+      $("#list-result").val("");
+      $("[id*='-filled']").hide();
+    });
+    $("[id*='-src']").on("change", function(e){
+      var id = this.id.replace("-src", "-filled");
+      if($(this).val()){
+        $("#" + id).show();
+      } else{
+        $("#" + id).hide();
       }
     });
 });
