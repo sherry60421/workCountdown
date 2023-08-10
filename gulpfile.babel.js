@@ -48,7 +48,7 @@ gulp.task('styles', () => {
 
 // 編譯 JavaScript 轉譯、合併、壓縮任務，完成後送到 dist/js/bundle.js
 gulp.task('javascripts', function() {
-    return browserify({
+    var mainJs =  browserify({
             entries: ['./src/javascripts/main.js']
         })
         .transform(babelify) // 轉譯
@@ -62,6 +62,21 @@ gulp.task('javascripts', function() {
         .on('error', gutil.log)
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(scriptsPaths.dest));
+    var countDownJs = browserify({
+            entries: ['./src/javascripts/countdown.js']
+        })
+        .transform(babelify) // 轉譯
+        .bundle()
+        .pipe(source('bundle1.js'))
+        .pipe(buffer()) // 從 streaming 轉回 buffered vinyl 檔案
+        .pipe(sourcemaps.init({
+            loadMaps: true
+        })) // 由於我們壓縮了檔案，要用 sourcemaps 來對應原始文件方便除錯
+        .pipe(uglify()) // 壓縮檔案
+        .on('error', gutil.log)
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest(scriptsPaths.dest));
+    return mainJs && countDownJs;
 });
 
 // 複製 images 任務，完成後送到 dist/images

@@ -1,6 +1,31 @@
+function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+          tmp = item.split("=");
+          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        });
+    return result;
+}
+
 $(function() {
     var now = new Date();
     var date = new Date();
+    var page = '', tmp = [];
+    location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+          tmp = item.split("=");
+          if (tmp[0] === 'page') page = decodeURIComponent(tmp[1]);
+        });
+    if(page){
+      $('[id^="page-"]').hide();
+      $('#page-'+page).show();
+    }
     // ---- 下班倒數計時器 ---- //
     // 上班時間按鈕
     $("#off-button-start button").on('click', function(e) {
@@ -96,94 +121,4 @@ $(function() {
         $("#retire-age").val(localStorage.getItem('retireAge'));
         $("#retire-age").trigger("change");
     }
-    // ---- 表格異動影響整理器 ---- //
-    $("#list").on("click", function(e){
-      // CASE
-      var caseText = $("#case-src").val();
-      var caseLines = caseText.split("\n");
-      var caseSystemList = [];
-      caseLines.forEach(function(e){
-        var s = e.replace(/(\(\d+\)\s)/, '');
-        s = s.replace(/(\[\s[\w\.]+\s\]\s位置：JAVA\\\w+\\)/, '');
-        s = s.substring(0, s.indexOf('\\'));
-        s = s.replace('case-', '');
-        if(s) caseSystemList.push(s);
-      });
-      var caseSystemSet = new Set(caseSystemList);
-      // Ezo
-      var ezoText = $("#ezo-src").val();
-      var ezoLines = ezoText.split("\n");
-      var ezoSystemList = [];
-      ezoLines.forEach(function(e){
-        var s = e.replace(/(\(\d+\)\s)/, '');
-        s = s.replace(/(\[\s[\w\.]+\s\]\s位置：EZO\\)/, '');
-        s = s.substring(0, s.indexOf('\\'));
-        if(s) ezoSystemList.push(s);
-      });
-      var ezoSystemSet = new Set(ezoSystemList);
-      // SCM
-      var scmText = $("#scm-src").val();
-      var scmLines = scmText.split("\n");
-      var scmSystemList = [];
-      scmLines.forEach(function(e){
-        var s = e.replace(/(\(\d+\)\s)/, '');
-        s = s.replace(/(\[\s[\w\.]+\s\]\s位置：SCM\\)/, '');
-        s = s.substring(0, s.indexOf('\\'));
-        if(s) scmSystemList.push(s);
-      });
-      var scmSystemSet = new Set(scmSystemList);
-      // ASP
-      var aspText = $("#asp-src").val();
-      var aspLines = aspText.split("\n");
-      var aspSystemList = [];
-      aspLines.forEach(function(e){
-        var s = e.replace(/(\(\d+\)\s)/, '');
-        s = s.replace(/(\[\s[\w\.]+\s\]\s位置：ASPNET\\)/, '');
-        s = s.substring(0, s.indexOf('\\'));
-        if(s) aspSystemList.push(s);
-      });
-      var aspSystemSet = new Set(aspSystemList);
-      // 整理
-      var allSet = new Set([...caseSystemSet, ...ezoSystemSet, ...scmSystemSet, ...aspSystemSet]);
-      if(allSet.size > 0){
-        var result = (caseSystemSet.size > 0 ? "\tCASE" : "")
-        + (ezoSystemSet.size > 0 ? "\tEzo" : "")
-        + (scmSystemSet.size > 0 ? "\tSCM" : "")
-        + (aspSystemSet.size > 0 ? "\tASP" : "") + "\n";
-        allSet.forEach(function(e){
-          if(e){
-            var line = e.toUpperCase() + "\t";
-            line += caseSystemSet.size > 0 && caseSystemSet.has(e) ? "V\t" : "\t";
-            line += ezoSystemSet.size > 0 && ezoSystemSet.has(e) ? "V\t" : "\t";
-            line += scmSystemSet.size > 0 && scmSystemSet.has(e) ? "V\t" : "\t";
-            line += aspSystemSet.size > 0 && aspSystemSet.has(e) ? "V\t" : "\t";
-            line += "\n";
-            result += line;
-          }
-        });
-        $("#list-result").val(result);
-      }
-    });
-    $("#copyToClipBoard").on("click", function(e){
-      var content = document.getElementById('list-result');
-      content.select();
-      document.execCommand('copy');
-      alert("複製完成！");
-    });
-    $("#clearAll").on("click", function(e){
-      $("#case-src").val("");
-      $("#ezo-src").val("");
-      $("#scm-src").val("");
-      $("#asp-src").val("");
-      $("#list-result").val("");
-      $("[id*='-filled']").hide();
-    });
-    $("[id*='-src']").on("change", function(e){
-      var id = this.id.replace("-src", "-filled");
-      if($(this).val()){
-        $("#" + id).show();
-      } else{
-        $("#" + id).hide();
-      }
-    });
 });
