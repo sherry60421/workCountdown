@@ -4,7 +4,8 @@
   "description": "csc work countdown!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -34,7 +35,9 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "gh-pages": "^6.0.0",
     "native": "^0.3.3",
     "natives": "^1.1.6"
-  }
+  },
+  "keywords": []
 }
