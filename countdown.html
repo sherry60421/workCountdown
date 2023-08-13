@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Work Countdown</title>
+    <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./bower_components/flipclock/compiled/flipclock.css">
+    <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div id="header">
+        </div>
+        <div id="content">
+            <div class="row">
+                <!-- 下班倒數計時器 -->
+                <div id="page-offWork" style="visibility: hidden;">
+                    <div class="message">
+                        你今天幾點上班？
+                    </div>
+                    <div id="off-button-start" class="function-button">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-lg btn-default" value="07:30">07:30</button>
+                            <button type="button" class="btn btn-lg btn-default" value="08:00">08:00</button>
+                            <button type="button" class="btn btn-lg btn-default" value="08:30">08:30</button>
+                        </div>
+                    </div>
+                    <div id="off-after-message" class="message"></div>
+                    <div id="off-countdown" class="countdown-clock none-display"></div>
+                </div>
+                <!-- 午餐倒數計時器 -->
+                <div id="page-lunch" style="visibility: hidden;">
+                    <div id="lunch-message" class="message">
+                        距離午餐時間還有
+                    </div>
+                    <div id="lunch-countdown" class="countdown-clock"></div>
+                </div>
+                <!-- 退休倒數計時器 -->
+                <div id="page-retirement" style="visibility: hidden;">
+                  <div class="message">
+                      你的生日與預計退休年齡？
+                  </div>
+                  <div class="function-button">
+                      <input id="birth-start" class="form-control" placeholder="請輸入生日" style="width: auto; display: inline;" data-provide="datepicker" data-date-autoclose="true" data-date-format="yyyy/mm/dd"/>
+                      <input id="retire-age" type="number" class="form-control" placeholder="請輸入年齡" style="width: auto; display: inline;"/>
+                  </div>
+                  <div id="retired-after-message" class="message" style="display: none;">你已經退休了</div>
+                  <div id="to-retire-after-message" class="message" style="display: none;">
+                    距離<span id="retire-age-text"></span>歲退休還剩下
+                  </div>
+                  <div id="retire-countdown" class="countdown-daily-clock none-display"></div>
+                </div>
+            </div>
+        </div>
+        <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./bower_components/flipclock/compiled/flipclock.min.js"></script>
+        <script type="text/javascript" src="./bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script type="text/javascript" src="./js/bundle1.js" charset="utf-8"></script>
+</body>
+
+</html>

@@ -50,18 +50,22 @@
                     <!-- 退休倒數計時器 -->
                     <div id="retirement" class="tab-pane fade">
                       <div class="message">
-                          你的生日？
+                          你的生日與預計退休年齡？
                       </div>
                       <div class="function-button">
-                          <input id="birth-start" class="form-control" style="width: auto; display: inline;" data-provide="datepicker" data-date-autoclose="true" data-date-format="yyyy/mm/dd">
+                          <input id="birth-start" class="form-control" placeholder="請輸入生日" style="width: auto; display: inline;" data-provide="datepicker" data-date-autoclose="true" data-date-format="yyyy/mm/dd"/>
+                          <input id="retire-age" type="number" class="form-control" placeholder="請輸入年齡" style="width: auto; display: inline;"/>
                       </div>
-                      <div id="retire-after-message" class="message"></div>
+                      <div id="retired-after-message" class="message" style="display: none;">你已經退休了</div>
+                      <div id="to-retire-after-message" class="message" style="display: none;">
+                        距離<span id="retire-age-text"></span>歲退休還剩下
+                      </div>
                       <div id="retire-countdown" class="countdown-daily-clock none-display"></div>
                     </div>
                     <!-- 表格異動影響整理器 -->
                     <div id="alter-table" class="tab-pane fade in active">
                       <div class="message">
-                          <a href="http://hackmd.csc.com.tw/s/pXHO5gGWS" target="_blank">使用教學(限公司內網)</a>
+                          <a href="#" target="_blank">使用教學(限公司內網)</a>
                       </div>
                       <div class="row">
                         <div class="col-md-8 col-md-offset-2">
